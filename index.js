@@ -10,10 +10,10 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors())
 // DB information to connet
 var conn = mysql.createConnection({
-    host:'sql6.freemysqlhosting.net',
-    user:'sql6683385',
-    password:'2vllJDLHNj',
-    database:'sql6683385'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 })
 conn.connect((err)=>{
     console.log('connected to DB')
@@ -36,8 +36,6 @@ app.get('/students',(req,res)=>{
     })
 })
 
-const PORT = process.env.PORT || 5000
-
-app.listen(PORT , ()=>{
-    console.log('Listening on : ' + PORT)
+app.listen(process.env.PORT , ()=>{
+    console.log('Listening on : ' + process.env.PORT)
 })
